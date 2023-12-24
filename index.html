@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="styles.css">
   <title>Đặt Hàng</title>
 </head>
-
 <body>
   <div class="container" id="container">
     <div class="swiper-container">
@@ -41,19 +39,23 @@
         <label for="quantity">Số Lượng:</label>
         <input type="number" id="quantity" name="quantity" value="1" required>
 
+        <!-- Thêm phần mã giảm giá -->
         <label for="discountCode">Mã ưu đãi:</label>
         <input type="text" id="discountCode" name="discountCode" oninput="checkDiscountCode()">
-
         <button type="button" onclick="showConfirmationModal()">Đặt Hàng</button>
+        <!-- Thêm nút kiểm tra mã ưu đãi -->
+        <button type="button" onclick="checkDiscountCode()">Kiểm tra mã ưu đãi</button>
+        <!-- Thêm thông báo mã ưu đãi -->
+        <p id="discountMessage" class="discount-message"></p>
       </form>
     </div>
 
-    <div class="selected-image fade-in" id="selectedImage">
+    <div class="selected-image" id="selectedImage">
       <h2>Mặt hàng đã chọn</h2>
       <img src="https://duccodedao.github.io/Images/1.png" alt="Mặt hàng đã chọn">
     </div>
 
-    <div class="success-message fade-in" id="successMessage">
+    <div class="success-message" id="successMessage">
       <p>Đặt hàng thành công!</p>
     </div>
 
@@ -76,5 +78,4 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>
