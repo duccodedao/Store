@@ -19,11 +19,25 @@ swiper.on('slideChangeTransitionEnd', function () {
   selectedImg.querySelector('img').src = activeImg.src;
 });
 
+// Biến global để lưu trữ mã giảm giá
 var discountCode = '';
 
+// Function kiểm tra mã giảm giá
 function checkDiscountCode() {
   var inputDiscountCode = document.getElementById('discountCode');
+  var discountMessage = document.getElementById('discountMessage');
+
+  // Đặt lại mã giảm giá
   discountCode = inputDiscountCode.value;
+
+  // Kiểm tra mã giảm giá và hiển thị thông báo
+  if (isValidDiscountCode(discountCode)) {
+    discountMessage.style.display = 'block';
+    discountMessage.textContent = 'Mã giảm giá hợp lệ. Giảm giá 10%!';
+  } else {
+    discountMessage.style.display = 'block';
+    discountMessage.textContent = 'Mã giảm giá không hợp lệ.';
+  }
 }
 
 function showConfirmationModal() {
@@ -61,6 +75,7 @@ function hideConfirmationModal() {
 }
 
 function sendOrder() {
+  // Lấy thông tin đặt hàng từ các trường trong confirmation modal
   const orderInfo = {
     productName: document.getElementById('selectedProductName').textContent,
     totalAmount: document.getElementById('totalAmount').textContent,
@@ -70,8 +85,10 @@ function sendOrder() {
     customerPhoneNumber: document.getElementById('customerPhoneNumber').textContent,
   };
 
+  // Gọi hàm gửi thông tin đặt hàng qua Telegram
   sendToTelegram(orderInfo);
 
+  // Tiếp tục xử lý sau khi gửi thông tin thành công
   hideConfirmationModal();
   var successMessage = document.getElementById('successMessage');
   successMessage.style.display = 'block';
@@ -94,8 +111,8 @@ function formatCurrency(value) {
 }
 
 function sendToTelegram(orderInfo) {
-  const telegramBotToken = '6525730844:AAGj15TJV59qozfV6vZZD8Cmr85hHc8-Lcc';
-  const chatId = '-1002042330395';
+  const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
+  const chatId = 'YOUR_CHAT_ID';
 
   const message = `
     🛒 **Đơn Hàng Mới**
@@ -114,4 +131,10 @@ function sendToTelegram(orderInfo) {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error sending message to Telegram:', error));
+}
+
+// Function kiểm tra mã giảm giá hợp lệ
+function isValidDiscountCode(code) {
+  // Đây chỉ là ví dụ đơn giản, bạn có thể thay đổi quy tắc kiểm tra
+  return code === 'ABC';
     }
