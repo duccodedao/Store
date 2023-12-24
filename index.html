@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <title>Đặt Hàng</title>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" data-product-name="Áo 1" data-product-price="99,999 VND">
+          <img src="https://duccodedao.github.io/Images/1.png" alt="Ảnh mặt hàng">
+          <div class="product-info">
+            <p class="name">Tên mặt hàng: Áo 1</p>
+            <p class="price">Giá: 99,999 VND</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="form-container">
+      <form id="orderForm">
+        <h1>Thông tin đặt hàng</h1>
+        <label for="fullName">Họ và Tên:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="phoneNumber">Số Điện Thoại:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="address">Địa Chỉ:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="quantity">Số Lượng:</label>
+        <input type="number" id="quantity" name="quantity" value="1" required>
+
+        <label for="discountCode">Mã ưu đãi:</label>
+        <input type="text" id="discountCode" name="discountCode" oninput="checkDiscountCode()">
+
+        <button type="button" onclick="showConfirmationModal()">Đặt Hàng</button>
+      </form>
+    </div>
+
+    <div class="selected-image fade-in" id="selectedImage">
+      <h2>Mặt hàng đã chọn</h2>
+      <img src="https://duccodedao.github.io/Images/1.png" alt="Mặt hàng đã chọn">
+    </div>
+
+    <div class="success-message fade-in" id="successMessage">
+      <p>Đặt hàng thành công!</p>
+    </div>
+
+    <div class="confirmation-modal" id="confirmationModal">
+      <div class="confirmation-modal-content">
+        <img src="https://duccodedao.github.io/Images/1.png" alt="Xác nhận mặt hàng thanh toán">
+        <p id="selectedProductName"></p>
+        <p id="totalAmount"></p>
+        <p id="shippingFee"></p>
+        <p class="total-amount" id="totalPayment"></p>
+        <p id="customerName"></p>
+        <p id="customerAddress"></p>
+        <p id="customerPhoneNumber"></p>
+        <button onclick="sendOrder()">Xác Nhận</button>
+        <button onclick="hideConfirmationModal()">Huỷ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
